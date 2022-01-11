@@ -37,6 +37,7 @@ export default class Cena{
 
         //Desenha o "fundo" (canvas) e os sprites na tela, ja com seus estados (posicoes) modificados pelo passo
         this.desenhar();
+        this.checaColisao();
 
         //Rodo o iniciar novamente para refazer todo esse processo
         this.iniciar();
@@ -53,5 +54,19 @@ export default class Cena{
         cancelAnimationFrame(this.idAnim);
         this.t0 = null;
         this.dt = 0;
+    }
+
+    checaColisao(){
+        for(let a = 0; a < this.sprites.length - 1; a++){
+            const spriteA = this.sprites[a];
+
+            for(let b = a+1; b < this.sprites.length; b++){
+                const spriteB = this.sprites[b];
+
+                if(spriteA.colidiuCom(spriteB)){
+                    console.log(spriteA, spriteB);
+                }
+            }
+        }
     }
 }

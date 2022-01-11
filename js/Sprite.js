@@ -20,4 +20,10 @@ export default class Sprite{
         this.x = this.x + this.vx * dt;
         this.y = this.y + this.vy * dt;
     }
+
+    colidiuCom(outro){
+        return !(
+            (this.x > outro.x + outro.w) || (this.x + this.w < outro.x) ||  (this.y > outro.y + outro.w) || (this.y + this.h < outro.y)
+        )
+    }
 }
