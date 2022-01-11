@@ -3,6 +3,7 @@ export default class Cena{
         this.canvas = canvas;
         this.ctx = canvas.getContext("2d");
         this.sprites = [];
+        this.aRemover = [];
         this.t0 = 0;
         this.dt = 0;
 
@@ -64,9 +65,19 @@ export default class Cena{
                 const spriteB = this.sprites[b];
 
                 if(spriteA.colidiuCom(spriteB)){
-                    console.log(spriteA, spriteB);
+                    this.quandoColidir(spriteA, spriteB);
                 }
             }
+        }
+    }
+
+    quandoColidir(a, b){
+        if(!this.aRemover.includes(a)){
+            this.aRemover.push(a);
+        } 
+
+        if(!this.aRemover.includes(b)){
+            this.aRemover.push(b);
         }
     }
 }
