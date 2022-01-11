@@ -5,8 +5,7 @@ export default class Cena{
     }
     
     desenhar(){
-        console.log(this);
-        this.fillStyle = "grey";
+        this.ctx.fillStyle = "grey";
         this.ctx.fillRect(0,0,this.canvas.width, this.canvas.height);
     }
 }
