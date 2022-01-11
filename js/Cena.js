@@ -39,6 +39,7 @@ export default class Cena{
         //Desenha o "fundo" (canvas) e os sprites na tela, ja com seus estados (posicoes) modificados pelo passo
         this.desenhar();
         this.checaColisao();
+        this.removerSprites();
 
         //Rodo o iniciar novamente para refazer todo esse processo
         this.iniciar();
@@ -78,6 +79,15 @@ export default class Cena{
 
         if(!this.aRemover.includes(b)){
             this.aRemover.push(b);
+        }
+    }
+
+    removerSprites(){
+        for (const alvo of this.aRemover) {
+            const i = this.sprites.indexOf(alvo);
+            if(i >= 0){
+                this.sprites.splice(i, 1);
+            }
         }
     }
 }
