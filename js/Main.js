@@ -12,6 +12,9 @@ const en1 = new Sprite({
 
 cena1.adicionar(pc);
 cena1.adicionar(en1);
+
+//Daqui pra cima tudo entendido
+//Dificuldade esta sendo na parte da animacao
 cena1.iniciar();
 
 document.addEventListener("keydown", (e) => {

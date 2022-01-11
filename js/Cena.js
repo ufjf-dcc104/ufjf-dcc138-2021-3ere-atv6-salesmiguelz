@@ -32,9 +32,13 @@ export default class Cena{
         this.t0 = this.t0 ?? t;
         this.dt = (t - this.t0)/1000;
 
+        //Passo altera a posicao dos sprites, baseado no dt (equacao do espaco). (lembra que as animacoes tem que ser baseadas no dt para nao ter bugs visuais)
         this.passo(this.dt);
+
+        //Desenha o "fundo" (canvas) e os sprites na tela, ja com seus estados (posicoes) modificados pelo passo
         this.desenhar();
 
+        //Rodo o iniciar novamente para refazer todo esse processo
         this.iniciar();
         this.t0 = t;
     }
