@@ -13,10 +13,13 @@ export default class Cena{
     desenhar(){
         this.ctx.fillStyle = "grey";
         this.ctx.fillRect(0,0,this.canvas.width, this.canvas.height);
-        for(let i = 0; i < this.sprites.length; i++){
-            const sprite = this.sprites[i];
-            sprite.desenhar(this.ctx);
+        if(this.assets.acabou()){
+            for(let i = 0; i < this.sprites.length; i++){
+                const sprite = this.sprites[i];
+                sprite.desenhar(this.ctx);
+            }
         }
+        
 
         this.ctx.fillStyle = "yellow";
         this.ctx.fillText(this.assets?.progresso(), 10, 20);
@@ -27,8 +30,11 @@ export default class Cena{
     }
 
     passo(dt){
-        for (const sprite of this.sprites) {
-            sprite.passo(dt);
+        //So comeco a contar o passo a partir de quando as imagens estao carregadas
+        if(this.assets.acabou()){
+            for (const sprite of this.sprites) {
+                sprite.passo(dt);
+            }
         }
     }
 

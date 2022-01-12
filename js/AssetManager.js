@@ -5,13 +5,13 @@ export default class AssetManager{
         this.imagens = new Map();
     }
     
-    carregaImagem(chave, source){
+    carregaImagem(chave, valor){
         const img = new Image();
         img.addEventListener("load", () => {
             console.log(`Imagem ${this.carregadas}/${this.aCarregar} carregada!`);
             this.carregadas++;
         });
-        img.src = source;
+        img.src = valor;
         this.imagens.set(chave, img);
         this.aCarregar++;
     }
