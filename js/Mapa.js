@@ -38,4 +38,18 @@ export default class Mapa{
             }
         }
     }
+
+    carregaMapa(modelo){
+        this.LINHAS = modelo.length;
+        this.COLUNAS = modelo[0].length ?? 0;
+        this.tiles = [];
+        for(let l = 0; l < this.LINHAS; l++){
+            //Criando um vetor em cada linha, que sera o vetor de colunas
+            this.tiles[l] = [];
+            for(let c = 0; c < this.COLUNAS; c++){
+                this.tiles[l][c] = modelo[l][c];
+            }
+        }
+        this.cena = null;
+    }
 }
