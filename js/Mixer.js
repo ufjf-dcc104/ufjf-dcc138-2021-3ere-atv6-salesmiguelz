@@ -1,7 +1,5 @@
 export default class Mixer{
     constructor(numCanais){
-        this.CANAIS = 0;
-        this.canais = [];
         this.configuraCanais(numCanais);
     }
     configuraCanais(numCanais = 10){
@@ -22,6 +20,7 @@ export default class Mixer{
         for(let c = 0; c < this.CANAIS; c++){
             const canal = this.canais[c];
 
+            //Caso entre na condicional, quer dizer que o canal pode ser usado
             if(agora > canal.fim){
                 canal.audio.src = audio.src;
                 canal.audio.play();
