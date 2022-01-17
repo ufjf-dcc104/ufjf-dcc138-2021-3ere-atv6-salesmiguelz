@@ -91,7 +91,6 @@ export default class Sprite{
     aplicaRestricoesEsquerda(pmx, pmy){
         if(this.vx < 0){
             const SIZE = this.cena.mapa.SIZE
-            //Andando no eixo x, portanto o y nao tem relacao
 
             if(this.cena.mapa.tiles[pmy][pmx] != 0){
                 const tile = {
@@ -112,10 +111,6 @@ export default class Sprite{
     aplicaRestricoesBaixo(pmx, pmy){
         if(this.vy > 0){
             const SIZE = this.cena.mapa.SIZE
-            //Andando no eixo y, portanto o x nao tem relacao
-            const pmx = this.mx;
-            const pmy = this.my + 1;
-
             if(this.cena.mapa.tiles[pmy][pmx] != 0){
                 const tile = {
                     x: pmx * SIZE  + (SIZE/2), 
@@ -135,10 +130,6 @@ export default class Sprite{
     aplicaRestricoesCima(pmx, pmy){
         if(this.vy < 0){
             const SIZE = this.cena.mapa.SIZE
-            //Andando no eixo y, portanto o x nao tem relacao
-            const pmx = this.mx;
-            const pmy = this.my - 1;
-
             if(this.cena.mapa.tiles[pmy][pmx] != 0){
                 const tile = {
                     x: pmx * SIZE  + (SIZE/2), 
