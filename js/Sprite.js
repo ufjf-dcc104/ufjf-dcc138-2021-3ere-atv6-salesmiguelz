@@ -52,9 +52,9 @@ export default class Sprite{
         this.aplicaRestricoesBaixo(this.mx + 1, this.my + 1);
 
 
-        this.aplicaRestricoesCima(this.pmx - 1, this.pmy -1);
-        this.aplicaRestricoesCima(this.pmx, this.pmy -1);
-        this.aplicaRestricoesCima(this.pmx + 1, this.pmy -1);
+        this.aplicaRestricoesCima(this.mx - 1, this.my -1);
+        this.aplicaRestricoesCima(this.mx, this.my -1);
+        this.aplicaRestricoesCima(this.mx + 1, this.my -1);
     }
 
     aplicaRestricoesDireita(pmx, pmy){
