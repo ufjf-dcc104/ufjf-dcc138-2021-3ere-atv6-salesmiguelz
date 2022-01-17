@@ -32,9 +32,19 @@ const en1 = new Sprite({
 cena1.adicionar(pc);
 cena1.adicionar(en1);
 cena1.adicionar(new Sprite({
+    x: 115,
     y: 70,
+    vy: 10,
     color: "red"
 }));
+
+cena1.adicionar(new Sprite({
+    x: 115,
+    y: 160,
+    vy: -10,
+    color: "red"
+}));
+
 
 //Daqui pra cima tudo entendido
 //Dificuldade esta sendo na parte da animacao
