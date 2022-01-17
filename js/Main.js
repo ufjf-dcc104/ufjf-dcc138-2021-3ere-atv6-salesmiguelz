@@ -23,7 +23,8 @@ cena1.configuraMapa(mapa1);
 
 const pc = new Sprite({x: 50, vx: 10});
 const en1 = new Sprite({
-    x: 140,
+    x: 160,
+    vx: -10,
     color: "red"
 });
 

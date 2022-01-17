@@ -35,8 +35,13 @@ export default class Sprite{
     }
 
     aplicaRestricoes(dt){
-        const SIZE = this.cena.mapa.SIZE;
+        this.aplicaRestricoesDireita(dt);
+        this.aplicaRestricoesEsquerda(dt);
+    }
+
+    aplicaRestricoesDireita(dt){
         if(this.vx > 0){
+            const SIZE = this.cena.mapa.SIZE;
             //Andando para direita, portanto o y nao tem relacao
             const pmx = this.mx + 1;
             const pmy = this.my;
@@ -52,6 +57,29 @@ export default class Sprite{
                 if(this.colidiuCom(tile)){
                     this.vx = 0;
                     this.x = tile.x - tile.w/2 - this.w/2 - 1;
+                }
+            }
+        }
+    }
+
+    aplicaRestricoesEsquerda(dt){
+        if(this.vx < 0){
+            const SIZE = this.cena.mapa.SIZE
+            //Andando para direita, portanto o y nao tem relacao
+            const pmx = this.mx - 1;
+            const pmy = this.my;
+
+            if(this.cena.mapa.tiles[pmy][pmx] != 0){
+                const tile = {
+                    x: pmx * SIZE  + (SIZE/2), 
+                    y: pmy * SIZE + (SIZE/2), 
+                    w: SIZE, 
+                    h: SIZE
+                };
+
+                if(this.colidiuCom(tile)){
+                    this.vx = 0;
+                    this.x = tile.x + tile.w/2 + this.w/2 + 1;
                 }
             }
         }
