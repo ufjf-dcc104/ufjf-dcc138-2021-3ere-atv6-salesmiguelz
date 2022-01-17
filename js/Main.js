@@ -45,9 +45,6 @@ cena1.adicionar(new Sprite({
     color: "red"
 }));
 
-
-//Daqui pra cima tudo entendido
-//Dificuldade esta sendo na parte da animacao
 cena1.iniciar();
 
 document.addEventListener("keydown", (e) => {
@@ -58,6 +55,8 @@ document.addEventListener("keydown", (e) => {
         case "S":
             cena1.parar();
             break;
+        case "c":
+            assets.audio("moeda").play();
         default:
             break;
     }
