@@ -3,6 +3,7 @@ import AssetManager from "./AssetManager.js";
 import Cena from "./Cena.js";
 import Sprite from "./Sprite.js";
 import modeloMapa1 from "../maps/mapa1.js";
+import Mixer from "./Mixer.js";
 
 const assets = new AssetManager();
 assets.carregaImagem("garota", "assets/garota.png");
@@ -11,6 +12,8 @@ assets.carregaImagem("orc", "assets/orc.png");
 assets.carregaAudio("moeda", "assets/coin.wav");
 assets.carregaAudio("boom", "assets/boom.wav");
 
+
+const mixer = new Mixer(10);
 
 const canvas = document.querySelector("canvas");
 const cena1 = new Cena(canvas, assets);
@@ -57,9 +60,10 @@ document.addEventListener("keydown", (e) => {
             cena1.parar();
             break;
         case "c":
-            assets.audio("moeda").play();
+            mixer.play(assets.audio("moeda"));
+            break;
         case "b":
-            assets.audio("boom").play();
+            mixer.play(assets.audio("boom"));
         default:
             break;
     }
