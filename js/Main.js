@@ -13,6 +13,8 @@ const assets = new AssetManager(mixer);
 input.configurarTeclado({
     "ArrowLeft": "MOVE_ESQUERDA",
     "ArrowRight": "MOVE_DIREITA",
+    "ArrowUp": "MOVE_CIMA",
+    "ArrowDown": "MOVE_BAIXO",
 });
 
 assets.carregaImagem("garota", "assets/garota.png");
@@ -41,6 +43,14 @@ pc.controlar = function(dt){
         this.vx = +50;
     } else{
         this.vx = 0;
+    }
+
+    if(input.comandos.get("MOVE_CIMA")){
+        this.vy = -50;
+    } else if(input.comandos.get("MOVE_BAIXO")){
+        this.vy = +50;
+    } else{
+        this.vy = 0;
     }
 }
 
