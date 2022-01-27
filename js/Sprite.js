@@ -20,15 +20,21 @@ export default class Sprite{
         ctx.strokeStyle = "blue";
         ctx.strokeRect(this.mx * this.cena.mapa.SIZE, this.my * this.cena.mapa.SIZE, this.cena.mapa.SIZE, this.cena.mapa.SIZE);
     }
-    passo(dt){
+    controlar(dt){
+
+    }
+
+    mover(dt){
         this.x = this.x + this.vx * dt;
         this.y = this.y + this.vy * dt;
         //Vou encontrar em qual coluna esta o elemento
         this.mx = Math.floor(this.x / this.cena.mapa.SIZE);
-
         //Vou encontrar em qual linha esta o elemento
         this.my = Math.floor(this.y/ this.cena.mapa.SIZE);
-
+    }
+    passo(dt){
+        this.controlar(dt);
+        this.mover(dt);
     }
 
     colidiuCom(outro){
