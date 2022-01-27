@@ -54,27 +54,36 @@ pc.controlar = function(dt){
     }
 }
 
+cena1.adicionar(pc);
+
+function perseguePc(dt){
+    this.vx = 25 * Math.sign(pc.x - this.x);
+    this.vy = 25 * Math.sign(pc.y - this.y);
+}
 const en1 = new Sprite({
-    x: 160,
+    x: 360,
     vx: -10,
-    color: "red"
+    color: "red",
+    controlar: perseguePc,
 });
 
+en1.controlar = perseguePc;
 
-cena1.adicionar(pc);
 cena1.adicionar(en1);
 cena1.adicionar(new Sprite({
     x: 115,
     y: 50,
     vy: 10,
-    color: "green"
+    color: "green",
+    controlar: perseguePc,
 }));
 
 cena1.adicionar(new Sprite({
     x: 115,
     y: 160,
     vy: -10,
-    color: "red"
+    color: "red",
+    controlar: perseguePc,
 }));
 
 cena1.iniciar();

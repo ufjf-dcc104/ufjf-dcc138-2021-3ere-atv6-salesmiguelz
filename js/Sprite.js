@@ -1,6 +1,6 @@
 export default class Sprite{
     //Responsavel por modelar algo que se move na tela.
-    constructor({x=100, y=100, vx=0, vy=0, w=20, h=20, color="white"}={}){
+    constructor({x=100, y=100, vx=0, vy=0, w=20, h=20, color="white", controlar = () => {}}={}){
         this.x = x;
         this.y = y;
         this.vx = vx;
@@ -13,6 +13,8 @@ export default class Sprite{
         //Posicao no mapa, e nao no canvas todo como o x  e o y originais
         this.mx = 0;
         this.my = 0;
+
+        this.controlar = controlar;
     }
     desenhar(ctx){
         ctx.fillStyle = this.color;
