@@ -4,9 +4,17 @@ import Cena from "./Cena.js";
 import Sprite from "./Sprite.js";
 import modeloMapa1 from "../maps/mapa1.js";
 import Mixer from "./Mixer.js";
+import InputManager from "./InputManager.js";
 
+const input = new InputManager();
 const mixer = new Mixer(10);
 const assets = new AssetManager(mixer);
+
+input.configurarTeclado({
+    "ArrowLeft": "MOVE_ESQUERDA",
+    "ArrowRight": "MOVE_DIREITA",
+});
+
 assets.carregaImagem("garota", "assets/garota.png");
 assets.carregaImagem("esqueleto", "assets/skelly.png");
 assets.carregaImagem("orc", "assets/orc.png");
