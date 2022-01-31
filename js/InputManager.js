@@ -6,8 +6,11 @@ export default class InputManager{
 
     configurarTeclado(acoes){
         for (const tecla in acoes) {
+            //Comando recebe o valor das chaves e coloca dentro do map de comando
             const comando = acoes[tecla];
             this.comandos.set(comando, false);
+
+            //Associo uma tecla ao MOVE_DIREITA, MOVE_ESQUERDA, etc...
             this.teclas.set(tecla, comando);
         }
 

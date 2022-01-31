@@ -8,8 +8,8 @@ export default class Cena{
         this.dt = 0;
         this.idAnim = null;
         this.assets = assets;
-
         this.mapa = null;
+        this.game = null;
     }
     
     desenhar(){
