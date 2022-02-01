@@ -6,6 +6,8 @@ import modeloMapa1 from "../maps/mapa1.js";
 import Mixer from "./Mixer.js";
 import InputManager from "./InputManager.js";
 import Game from "./Game.js";
+import CenaJogo from "./CenaJogo.js";
+import CenaCarregando from "./CenaCarregando.js";
 
 const input = new InputManager();
 const mixer = new Mixer(10);
@@ -29,8 +31,11 @@ assets.carregaAudio("boom", "assets/boom.wav");
 const canvas = document.querySelector("canvas");
 
 const game = new Game(canvas, assets, input);
-const cena1 = new Cena(canvas, assets);
 
+const cena0 = new CenaCarregando(canvas, assets);
+const cena1 = new CenaJogo(canvas, assets);
+
+game.adicionarCena("carregando", cena0);
 game.adicionarCena("jogo", cena1);
 
 canvas.width = 14*32;
