@@ -22,6 +22,7 @@ input.configurarTeclado({
 assets.carregaImagem("garota", "assets/garota.png");
 assets.carregaImagem("esqueleto", "assets/skelly.png");
 assets.carregaImagem("orc", "assets/orc.png");
+assets.carregaImagem("background", "assets/night-sky.jpg");
 assets.carregaAudio("moeda", "assets/coin.wav");
 assets.carregaAudio("boom", "assets/boom.wav");
 

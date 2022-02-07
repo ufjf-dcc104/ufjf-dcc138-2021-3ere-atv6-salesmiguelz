@@ -27,6 +27,9 @@ export default class AssetManager{
         this.aCarregar++;
     }
 
+    img(chave){
+        return this.imagens.get(chave);
+    }
     audio(chave){
         return this.audios.get(chave);
     }

@@ -8,8 +8,8 @@ export default class Cena{
     }
     
     desenhar(){
-        this.ctx.fillStyle = "lightblue";
-        this.ctx.fillRect(0,0,this.canvas.width, this.canvas.height);
+
+        this.ctx.drawImage(this.assets.img("background"), 0, 0, this.canvas.width, this.canvas.height);
 
         this.mapa?.desenhar(this.ctx);
 
@@ -22,8 +22,7 @@ export default class Cena{
         }
         
 
-        this.ctx.fillStyle = "yellow";
-        this.ctx.fillText(this.assets?.progresso(), 10, 20);
+       
     }
 
     adicionar(sprite){
