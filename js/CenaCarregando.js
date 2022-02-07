@@ -5,14 +5,20 @@ export default class CenaCarregando extends Cena{
         this.ctx.fillStyle = "black";
         this.ctx.fillRect(0,0,this.canvas.width, this.canvas.height);
 
-        this.ctx.font = "20px Impact";
-
-        this.ctx.fillStyle = "yellow";
+        this.ctx.font = "25px Impact";
+        this.ctx.fillStyle = "red"
         this.ctx.textAlign = "center";
-        this.ctx.fillText(this.assets?.progresso(), this.canvas.width/2, this.canvas.height/2);
+        this.ctx.fillText("Pandora's Nightmare", this.canvas.width/2, this.canvas.height/3);
 
+        
         if(this.assets.acabou()){
+            this.ctx.fillStyle = "yellow"
             this.ctx.fillText("Aperte espaço para continuar!", this.canvas.width/2, this.canvas.height/2 + 40);
+        } else{
+            this.ctx.font = "20px Impact";
+            this.ctx.fillStyle = "yellow";
+            this.ctx.textAlign = "center";
+            this.ctx.fillText("Carregando", this.canvas.width/2, this.canvas.height/2);
         }
     }
     passo(dt){
