@@ -19,66 +19,65 @@ export default class CenaJogo extends Cena{
 
     preparar(){
         super.preparar();
-        
-        // const mapa1 = new Mapa(10, 14, 32);
-        // mapa1.carregaMapa(modeloMapa1);
-        // this.configuraMapa(mapa1);
+        const mapa1 = new Mapa(10, 14, 32);
+        mapa1.carregaMapa(modeloMapa1);
+        this.configuraMapa(mapa1);
 
 
-        // const pc = new Sprite({x: 50, vx: 10});
-        // pc.tags.add("pc");
-        // const cena = this;
-        // pc.controlar = function(dt){
-        //     if(cena.input.comandos.get("MOVE_ESQUERDA")){
-        //         this.vx = -50;
-        //     } else if(cena.input.comandos.get("MOVE_DIREITA")){
-        //         this.vx = +50;
-        //     } else{
-        //         this.vx = 0;
-        //     }
+        const pc = new Sprite({x: 50, vx: 10});
+        pc.tags.add("pc");
+        const cena = this;
+        pc.controlar = function(dt){
+            if(cena.input.comandos.get("MOVE_ESQUERDA")){
+                this.vx = -50;
+            } else if(cena.input.comandos.get("MOVE_DIREITA")){
+                this.vx = +50;
+            } else{
+                this.vx = 0;
+            }
 
-        //     if(cena.input.comandos.get("MOVE_CIMA")){
-        //         this.vy = -50;
-        //     } else if(cena.input.comandos.get("MOVE_BAIXO")){
-        //         this.vy = +50;
-        //     } else{
-        //         this.vy = 0;
-        //     }
-        // }
+            if(cena.input.comandos.get("MOVE_CIMA")){
+                this.vy = -50;
+            } else if(cena.input.comandos.get("MOVE_BAIXO")){
+                this.vy = +50;
+            } else{
+                this.vy = 0;
+            }
+        }
 
-        //     this.adicionar(pc);
+            this.adicionar(pc);
 
-        //     function perseguePc(dt){
-        //         this.vx = 25 * Math.sign(pc.x - this.x);
-        //         this.vy = 25 * Math.sign(pc.y - this.y);
-        //     }
-        //     const en1 = new Sprite({
-        //         x: 360,
-        //         vx: -10,
-        //         color: "red",
-        //         controlar: perseguePc,
-        //         tags: ["enemy"]
-        //     });
+            function perseguePc(dt){
+                this.vx = 25 * Math.sign(pc.x - this.x);
+                this.vy = 25 * Math.sign(pc.y - this.y);
+            }
+            const en1 = new Sprite({
+                x: 360,
+                vx: -10,
+                color: "red",
+                controlar: perseguePc,
+                tags: ["enemy"]
+            });
 
-        //     en1.controlar = perseguePc;
+            en1.controlar = perseguePc;
 
-        //     this.adicionar(en1);
-        //     this.adicionar(new Sprite({
-        //         x: 115,
-        //         y: 50,
-        //         vy: 10,
-        //         color: "green",
-        //         controlar: perseguePc,
-        //         tags: ["enemy"]
-        //     }));
+            this.adicionar(en1);
+            this.adicionar(new Sprite({
+                x: 115,
+                y: 50,
+                vy: 10,
+                color: "green",
+                controlar: perseguePc,
+                tags: ["enemy"]
+            }));
 
-        //     this.adicionar(new Sprite({
-        //         x: 115,
-        //         y: 160,
-        //         vy: -10,
-        //         color: "red",
-        //         controlar: perseguePc,
-        //         tags: ["enemy"]
-        //     }));
+            this.adicionar(new Sprite({
+                x: 115,
+                y: 160,
+                vy: -10,
+                color: "red",
+                controlar: perseguePc,
+                tags: ["enemy"]
+            }));
     }
 }
