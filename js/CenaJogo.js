@@ -4,16 +4,23 @@ import Sprite from "./Sprite.js";
 import modeloMapa1 from "../maps/mapa1.js";
 export default class CenaJogo extends Cena{
     quandoColidir(a, b){
-        if(!this.aRemover.includes(a)){
-            this.aRemover.push(a);
-        } 
-
-        if(!this.aRemover.includes(b)){
-            this.aRemover.push(b);
-        }
-
-        if(a.tags.has("pc") && b.tags.has("enemy") ){
-            this.game.selecionaCena("fim");
+        if(!(a.tags.has("pc") && b.tags.has("proj"))){
+            if(a.tags.has("proj") && b.tags.has("enemy")){
+                this.aRemover.push(b);
+                return;
+            }
+            if(!this.aRemover.includes(a)){
+                this.aRemover.push(a);
+            } 
+    
+            if(!this.aRemover.includes(b)){
+                this.aRemover.push(b);
+            }
+            
+    
+            if(a.tags.has("pc") && b.tags.has("enemy") ){
+                this.game.selecionaCena("fim");
+            }
         }
     }
 
@@ -24,24 +31,24 @@ export default class CenaJogo extends Cena{
         this.configuraMapa(mapa1);
         const cena = this;
 
-        const proj = new Sprite({color: "blue"});
-        proj.tags.add("proj");
-
+        
         const pc = new Sprite({x: 50, vx: 10});
+        const proj = new Sprite({x: 1000, color: "blue"});
         pc.tags.add("pc");
+        proj.tags.add("proj");
         pc.controlar = function(dt){
             if(cena.input.comandos.get("MOVE_ESQUERDA")){
-                this.vx = -70;
+                this.vx = -100;
             } else if(cena.input.comandos.get("MOVE_DIREITA")){
-                this.vx = +70;
+                this.vx = +100;
             } else{
                 this.vx = 0;
             }
 
             if(cena.input.comandos.get("MOVE_CIMA")){
-                this.vy = -70;
+                this.vy = -100;
             } else if(cena.input.comandos.get("MOVE_BAIXO")){
-                this.vy = +70;
+                this.vy = +100;
             } else{
                 this.vy = 0;
             }
@@ -51,7 +58,7 @@ export default class CenaJogo extends Cena{
             if(cena.input.comandos.get("ATIRAR")){
                 proj.x = pc.x;
                 proj.y = pc.y;
-                proj.vx = 90;
+                proj.vx = +200;
             }
         }
 

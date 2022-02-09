@@ -90,15 +90,14 @@ export default class Cena{
 
             for(let b = a+1; b < this.sprites.length; b++){
                 const spriteB = this.sprites[b];
-                if(!(spriteA.tags.has("pc") && spriteB.tags.has("proj")  || spriteA.tags.has("proj") && spriteB.tags.has("pc") )){
-                    if(spriteA.colidiuCom(spriteB)){
-                        this.quandoColidir(spriteA, spriteB);
-                    }
+                
+                if(spriteA.colidiuCom(spriteB)){
+                    this.quandoColidir(spriteA, spriteB);
                 }
+            }
                 
             }
         }
-    }
 
     quandoColidir(a, b){
         if(!this.aRemover.includes(a)){
@@ -139,7 +138,6 @@ export default class Cena{
     }
 
     criaInimigo(){
-       
             let sl = Math.floor(Math.random() * (10 - 1 - 1) + 1);
             let sc = 13;
     
@@ -149,6 +147,8 @@ export default class Cena{
                 vx: -60,
                 color: "red"
             });
+
+            en1.tags.add("enemy");
     
             this.adicionar(en1);
             this.contaInimigos++;
