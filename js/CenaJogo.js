@@ -29,17 +29,17 @@ export default class CenaJogo extends Cena{
         const cena = this;
         pc.controlar = function(dt){
             if(cena.input.comandos.get("MOVE_ESQUERDA")){
-                this.vx = -50;
+                this.vx = -70;
             } else if(cena.input.comandos.get("MOVE_DIREITA")){
-                this.vx = +50;
+                this.vx = +70;
             } else{
                 this.vx = 0;
             }
 
             if(cena.input.comandos.get("MOVE_CIMA")){
-                this.vy = -50;
+                this.vy = -70;
             } else if(cena.input.comandos.get("MOVE_BAIXO")){
-                this.vy = +50;
+                this.vy = +70;
             } else{
                 this.vy = 0;
             }
@@ -51,33 +51,6 @@ export default class CenaJogo extends Cena{
                 this.vx = 25 * Math.sign(pc.x - this.x);
                 this.vy = 25 * Math.sign(pc.y - this.y);
             }
-            const en1 = new Sprite({
-                x: 360,
-                vx: -10,
-                color: "red",
-                controlar: perseguePc,
-                tags: ["enemy"]
-            });
-
-            en1.controlar = perseguePc;
-
-            this.adicionar(en1);
-            this.adicionar(new Sprite({
-                x: 115,
-                y: 50,
-                vy: 10,
-                color: "green",
-                controlar: perseguePc,
-                tags: ["enemy"]
-            }));
-
-            this.adicionar(new Sprite({
-                x: 115,
-                y: 160,
-                vy: -10,
-                color: "red",
-                controlar: perseguePc,
-                tags: ["enemy"]
-            }));
+            
     }
 }

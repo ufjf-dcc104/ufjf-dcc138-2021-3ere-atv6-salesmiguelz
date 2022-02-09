@@ -1,3 +1,5 @@
+import Sprite from './Sprite.js';
+
 export default class Cena{
     constructor(canvas = null, assets = null){
         this.canvas = canvas;
@@ -37,6 +39,13 @@ export default class Cena{
                 sprite.passo(dt);
             }
         }
+
+        this.spawn += dt;
+
+        if(this.spawn >= 1.5){
+            this.spawn = 0;
+            this.criaInimigo();
+        }
     }
 
     quadro(t){
@@ -49,7 +58,9 @@ export default class Cena{
         //Desenha o "fundo" (canvas) e os sprites na tela, ja com seus estados (posicoes) modificados pelo passo
         this.desenhar();
         this.checaColisao();
+        this.verificaInimigo();
         this.removerSprites();
+
 
         //Rodo o iniciar novamente para refazer todo esse processo
 
@@ -122,5 +133,32 @@ export default class Cena{
         this.idAnim = null;
         this.mapa = null;
         this.rodando = true;
+        this.spawn = 0;
+    }
+
+    criaInimigo(){
+       
+            let sl = Math.floor(Math.random() * (10 - 1 - 1) + 1);
+            let sc = 13;
+    
+            const en1 = new Sprite({
+                x: sc * 32 + 32/2,
+                y: sl * 32 + 32/2,
+                vx: -60,
+                color: "red"
+            });
+    
+            this.adicionar(en1);
+            this.contaInimigos++;
+       
+    }
+
+    verificaInimigo(){
+        //Remove sprite caso ele bata na "parede do outro lado do canvas"
+        for(const sprite of this.sprites){
+            if(sprite.color == "red" && sprite.x == 11){
+                this.aRemover.push(sprite);
+            }
+        }
     }
 }
