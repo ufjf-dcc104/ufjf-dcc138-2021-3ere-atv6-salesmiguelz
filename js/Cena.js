@@ -156,7 +156,8 @@ export default class Cena{
     verificaInimigo(){
         //Remove sprite caso ele bata na "parede do outro lado do canvas"
         for(const sprite of this.sprites){
-            if(sprite.color == "red" && sprite.x == 11){
+
+            if(sprite.color == "red" && sprite.x == 43 ){
                 this.aRemover.push(sprite);
             }
         }
