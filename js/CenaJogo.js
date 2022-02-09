@@ -22,11 +22,13 @@ export default class CenaJogo extends Cena{
         const mapa1 = new Mapa(10, 14, 32);
         mapa1.carregaMapa(modeloMapa1);
         this.configuraMapa(mapa1);
+        const cena = this;
 
+        const proj = new Sprite({color: "blue"});
+        proj.tags.add("proj");
 
         const pc = new Sprite({x: 50, vx: 10});
         pc.tags.add("pc");
-        const cena = this;
         pc.controlar = function(dt){
             if(cena.input.comandos.get("MOVE_ESQUERDA")){
                 this.vx = -70;
@@ -45,7 +47,16 @@ export default class CenaJogo extends Cena{
             }
         }
 
-            this.adicionar(pc);
+        proj.controlar = function(){
+            if(cena.input.comandos.get("ATIRAR")){
+                proj.x = pc.x;
+                proj.y = pc.y;
+                proj.vx = 90;
+            }
+        }
+
+        this.adicionar(pc);
+        this.adicionar(proj);
 
             function perseguePc(dt){
                 this.vx = 25 * Math.sign(pc.x - this.x);

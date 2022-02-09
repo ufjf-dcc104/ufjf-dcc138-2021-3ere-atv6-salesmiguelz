@@ -90,10 +90,12 @@ export default class Cena{
 
             for(let b = a+1; b < this.sprites.length; b++){
                 const spriteB = this.sprites[b];
-                
-                if(spriteA.colidiuCom(spriteB)){
-                    this.quandoColidir(spriteA, spriteB);
+                if(!(spriteA.tags.has("pc") && spriteB.tags.has("proj")  || spriteA.tags.has("proj") && spriteB.tags.has("pc") )){
+                    if(spriteA.colidiuCom(spriteB)){
+                        this.quandoColidir(spriteA, spriteB);
+                    }
                 }
+                
             }
         }
     }
