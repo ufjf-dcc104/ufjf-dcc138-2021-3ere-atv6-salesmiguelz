@@ -3,9 +3,85 @@ import Mapa from "./Mapa.js";
 import Sprite from "./Sprite.js";
 import modeloMapa1 from "../maps/mapa1.js";
 export default class CenaJogo extends Cena{
+    desenhar(){
+        this.ctx.drawImage(this.assets.img("background"), 0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.font = "25px Impact";
+        this.ctx.fillStyle = "red"
+        this.ctx.textAlign = "center";
+        this.ctx.fillText(`Pontos: ${this.pont}`, 90, 30);
+
+        this.mapa?.desenhar(this.ctx);
+
+        if(this.assets.acabou()){
+            for(let i = 0; i < this.sprites.length; i++){
+                const sprite = this.sprites[i];
+                sprite.desenhar(this.ctx);
+                sprite.aplicaRestricoes();
+            }
+        }
+    }
+
+    passo(dt){
+        //So comeco a contar o passo a partir de quando as imagens estao carregadas
+        if(this.assets.acabou()){
+            for (const sprite of this.sprites) {
+                sprite.passo(dt);
+            }
+        }
+
+        this.spawn += dt;
+
+        if(this.spawn >= 1.5){
+            this.spawn = 0;
+            this.criaInimigo();
+        }
+    }
+
+    quadro(t){
+        this.t0 = this.t0 ?? t;
+        this.dt = (t - this.t0)/1000;
+
+        //Passo altera a posicao dos sprites, baseado no dt (equacao do espaco). (lembra que as animacoes tem que ser baseadas no dt para nao ter bugs visuais)
+        this.passo(this.dt);
+
+        //Desenha o "fundo" (canvas) e os sprites na tela, ja com seus estados (posicoes) modificados pelo passo
+        this.desenhar();
+        this.checaColisao();
+        this.verificaInimigo();
+        this.removerSprites();
+
+
+        //Rodo o iniciar novamente para refazer todo esse processo
+
+        if(this.rodando){
+            this.iniciar();
+        }
+        this.t0 = t;
+    }
+
+    checaColisao(){
+        for(let a = 0; a < this.sprites.length - 1; a++){
+            const spriteA = this.sprites[a];
+
+            for(let b = a+1; b < this.sprites.length; b++){
+                const spriteB = this.sprites[b];
+                
+                if(spriteA.colidiuCom(spriteB)){
+                    this.quandoColidir(spriteA, spriteB);
+                }
+            }
+                
+            }
+        }
+
     quandoColidir(a, b){
         if(!(a.tags.has("pc") && b.tags.has("proj"))){
             if(a.tags.has("proj") && b.tags.has("enemy")){
+                this.pont++;
+
+                if(this.pont == 10){
+                    this.game.selecionaCena("fim");
+                }
                 this.aRemover.push(b);
                 return;
             }
@@ -38,17 +114,17 @@ export default class CenaJogo extends Cena{
         proj.tags.add("proj");
         pc.controlar = function(dt){
             if(cena.input.comandos.get("MOVE_ESQUERDA")){
-                this.vx = -100;
+                this.vx = -150;
             } else if(cena.input.comandos.get("MOVE_DIREITA")){
-                this.vx = +100;
+                this.vx = +150;
             } else{
                 this.vx = 0;
             }
 
             if(cena.input.comandos.get("MOVE_CIMA")){
-                this.vy = -100;
+                this.vy = -150;
             } else if(cena.input.comandos.get("MOVE_BAIXO")){
-                this.vy = +100;
+                this.vy = +150;
             } else{
                 this.vy = 0;
             }

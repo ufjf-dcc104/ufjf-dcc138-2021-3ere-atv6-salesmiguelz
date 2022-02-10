@@ -9,66 +9,62 @@ export default class Cena{
         this.preparar();
     }
     
-    desenhar(){
+    // desenhar(){
+    //     this.ctx.drawImage(this.assets.img("background"), 0, 0, this.canvas.width, this.canvas.height);
 
-        this.ctx.drawImage(this.assets.img("background"), 0, 0, this.canvas.width, this.canvas.height);
+    //     this.mapa?.desenhar(this.ctx);
 
-        this.mapa?.desenhar(this.ctx);
-
-        if(this.assets.acabou()){
-            for(let i = 0; i < this.sprites.length; i++){
-                const sprite = this.sprites[i];
-                sprite.desenhar(this.ctx);
-                sprite.aplicaRestricoes();
-            }
-        }
-        
-
-       
-    }
+    //     if(this.assets.acabou()){
+    //         for(let i = 0; i < this.sprites.length; i++){
+    //             const sprite = this.sprites[i];
+    //             sprite.desenhar(this.ctx);
+    //             sprite.aplicaRestricoes();
+    //         }
+    //     }
+    // }
 
     adicionar(sprite){
         sprite.cena = this;
         this.sprites.push(sprite);
     }
 
-    passo(dt){
-        //So comeco a contar o passo a partir de quando as imagens estao carregadas
-        if(this.assets.acabou()){
-            for (const sprite of this.sprites) {
-                sprite.passo(dt);
-            }
-        }
+    // passo(dt){
+    //     //So comeco a contar o passo a partir de quando as imagens estao carregadas
+    //     if(this.assets.acabou()){
+    //         for (const sprite of this.sprites) {
+    //             sprite.passo(dt);
+    //         }
+    //     }
 
-        this.spawn += dt;
+    //     this.spawn += dt;
 
-        if(this.spawn >= 1.5){
-            this.spawn = 0;
-            this.criaInimigo();
-        }
-    }
+    //     if(this.spawn >= 1.5){
+    //         this.spawn = 0;
+    //         this.criaInimigo();
+    //     }
+    // }
 
-    quadro(t){
-        this.t0 = this.t0 ?? t;
-        this.dt = (t - this.t0)/1000;
+    // quadro(t){
+    //     this.t0 = this.t0 ?? t;
+    //     this.dt = (t - this.t0)/1000;
 
-        //Passo altera a posicao dos sprites, baseado no dt (equacao do espaco). (lembra que as animacoes tem que ser baseadas no dt para nao ter bugs visuais)
-        this.passo(this.dt);
+    //     //Passo altera a posicao dos sprites, baseado no dt (equacao do espaco). (lembra que as animacoes tem que ser baseadas no dt para nao ter bugs visuais)
+    //     this.passo(this.dt);
 
-        //Desenha o "fundo" (canvas) e os sprites na tela, ja com seus estados (posicoes) modificados pelo passo
-        this.desenhar();
-        this.checaColisao();
-        this.verificaInimigo();
-        this.removerSprites();
+    //     //Desenha o "fundo" (canvas) e os sprites na tela, ja com seus estados (posicoes) modificados pelo passo
+    //     this.desenhar();
+    //     this.checaColisao();
+    //     this.verificaInimigo();
+    //     this.removerSprites();
 
 
-        //Rodo o iniciar novamente para refazer todo esse processo
+    //     //Rodo o iniciar novamente para refazer todo esse processo
 
-        if(this.rodando){
-            this.iniciar();
-        }
-        this.t0 = t;
-    }
+    //     if(this.rodando){
+    //         this.iniciar();
+    //     }
+    //     this.t0 = t;
+    // }
 
     iniciar(){
         this.rodando = true;
@@ -135,6 +131,7 @@ export default class Cena{
         this.mapa = null;
         this.rodando = true;
         this.spawn = 0;
+        this.pont = 0;
     }
 
     criaInimigo(){
@@ -144,7 +141,7 @@ export default class Cena{
             const en1 = new Sprite({
                 x: sc * 32 + 32/2,
                 y: sl * 32 + 32/2,
-                vx: -60,
+                vx: -150,
                 color: "red"
             });
 
