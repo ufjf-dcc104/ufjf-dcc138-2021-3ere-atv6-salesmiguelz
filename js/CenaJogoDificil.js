@@ -1,8 +1,9 @@
 import Cena from "./Cena.js";
+
 import Mapa from "./Mapa.js";
 import Sprite from "./Sprite.js";
 import modeloMapa1 from "../maps/mapa1.js";
-export default class CenaJogo extends Cena{
+export default class CenaJogoMedio extends Cena{
     desenhar(){
         this.ctx.drawImage(this.assets.img("background"), 0, 0, this.canvas.width, this.canvas.height);
         this.ctx.font = "25px Impact";
@@ -10,7 +11,6 @@ export default class CenaJogo extends Cena{
         this.ctx.textAlign = "center";
         this.ctx.fillText(`Vida: ${this.vida}`, 90, 30);
         this.ctx.fillText(`Sanidade: ${this.sanidade}`, 200, 30);
-
         this.mapa?.desenhar(this.ctx);
 
         if(this.assets.acabou()){
@@ -34,7 +34,7 @@ export default class CenaJogo extends Cena{
 
         if(this.spawn >= 1.5){
             this.spawn = 0;
-            this.criaInimigo();
+            this.criaInimigo({vx: -400});
         }
     }
 
@@ -80,9 +80,7 @@ export default class CenaJogo extends Cena{
             if(a.tags.has("proj") && b.tags.has("enemy")){
                 this.sanidade++;
                 if(this.sanidade == 5){
-                    this.sanidade = 0;
-                    this.game.selecionaCena("jogoMedio");
-                    return;
+                    this.game.selecionaCena("win");
                 }
                 this.aRemover.push(b);
                 return;
@@ -116,17 +114,17 @@ export default class CenaJogo extends Cena{
         proj.tags.add("proj");
         pc.controlar = function(dt){
             if(cena.input.comandos.get("MOVE_ESQUERDA")){
-                this.vx = -150;
+                this.vx = -300;
             } else if(cena.input.comandos.get("MOVE_DIREITA")){
-                this.vx = +150;
+                this.vx = +300;
             } else{
                 this.vx = 0;
             }
 
             if(cena.input.comandos.get("MOVE_CIMA")){
-                this.vy = -150;
+                this.vy = -300;
             } else if(cena.input.comandos.get("MOVE_BAIXO")){
-                this.vy = +150;
+                this.vy = +300;
             } else{
                 this.vy = 0;
             }
@@ -136,7 +134,7 @@ export default class CenaJogo extends Cena{
             if(cena.input.comandos.get("ATIRAR")){
                 proj.x = pc.x;
                 proj.y = pc.y;
-                proj.vx = +200;
+                proj.vx = +400;
             }
         }
 

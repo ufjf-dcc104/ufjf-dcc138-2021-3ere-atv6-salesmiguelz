@@ -131,17 +131,18 @@ export default class Cena{
         this.mapa = null;
         this.rodando = true;
         this.spawn = 0;
-        this.pont = 0;
+        this.vida = 5;
+        this.sanidade = 0;
     }
 
-    criaInimigo(){
+    criaInimigo({vx = -150} = {}){
             let sl = Math.floor(Math.random() * (10 - 1 - 1) + 1);
             let sc = 13;
     
             const en1 = new Sprite({
                 x: sc * 32 + 32/2,
                 y: sl * 32 + 32/2,
-                vx: -150,
+                vx: vx,
                 color: "red"
             });
 
@@ -160,6 +161,11 @@ export default class Cena{
             }
             if(sprite.color == "red" && sprite.x == 43 ){
                 this.aRemover.push(sprite);
+                this.vida -= 1;
+                if(this.vida == 0){
+                    this.game.selecionaCena("fim");
+                    return;
+                }
             }
         }
     }
