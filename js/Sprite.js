@@ -1,13 +1,13 @@
 export default class Sprite{
     //Responsavel por modelar algo que se move na tela.
-    constructor({x=100, y=100, vx=0, vy=0, w=20, h=20, color="white", pers, assets, controlar = () => {}, tags = []}={}){
+    constructor({x=200, y=100, vx=0, vy=0, w=20, h=20, pers, assets, controlar = () => {}, tags = []}={}){
         this.x = x;
         this.y = y;
         this.vx = vx;
         this.vy = vy;
         this.w = w;
         this.h = h;
-        this.color = color;
+        this.color = "red";
         this.cena = null;
         this.pers = pers;
         this.assets = assets;
@@ -27,13 +27,15 @@ export default class Sprite{
     }
     desenhar(ctx){
         if(this.pers === "pandora"){
-            ctx.drawImage(this.assets.img("pandora"), Math.floor(this.cc)*64, this.lc*64, 64, 64, this.x, this.y, 64, 64);
-        } else{
+            ctx.drawImage(this.assets.img("pandora"), Math.floor(this.cc)*64, this.lc*64, 64, 64, this.x - 24, this.y - 26, 45, 45);
+        }
+        if(this.pers === "proj"){
+            ctx.drawImage(this.assets.img("energy"), 125, 10, 64, 64, this.x - this.h/2, this.y - this.w/2, 30, 30);
+        }
+        else{
             ctx.fillStyle = this.color;
             ctx.fillRect(this.x - this.w/2, this.y - this.h/2,this.w, this.h);
         }
-       
-      
     }
     controlar(dt){
 
