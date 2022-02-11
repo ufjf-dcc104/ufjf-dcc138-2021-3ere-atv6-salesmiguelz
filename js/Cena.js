@@ -133,6 +133,9 @@ export default class Cena{
         this.spawn = 0;
         this.vida = 5;
         this.sanidade = 0;
+        this.cc = 0;
+        this.lc = 0;
+        this.atirando = false;
     }
 
     criaInimigo({vx = -150} = {}){

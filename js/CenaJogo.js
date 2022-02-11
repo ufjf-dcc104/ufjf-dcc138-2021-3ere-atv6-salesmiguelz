@@ -111,7 +111,7 @@ export default class CenaJogo extends Cena{
         const cena = this;
 
         
-        const pc = new Sprite({x: 50, vx: 10});
+        const pc = new Sprite({x: 50, vx: 10, pers: "pandora", assets:this.assets});
         const proj = new Sprite({x: 1000, color: "blue"});
         pc.tags.add("pc");
         proj.tags.add("proj");
@@ -138,6 +138,7 @@ export default class CenaJogo extends Cena{
                 proj.x = pc.x;
                 proj.y = pc.y;
                 proj.vx = +200;
+                pc.atirando = true;
             }
         }
 

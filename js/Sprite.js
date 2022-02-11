@@ -1,6 +1,6 @@
 export default class Sprite{
     //Responsavel por modelar algo que se move na tela.
-    constructor({x=100, y=100, vx=0, vy=0, w=20, h=20, color="white", controlar = () => {}, tags = []}={}){
+    constructor({x=100, y=100, vx=0, vy=0, w=20, h=20, color="white", pers, assets, controlar = () => {}, tags = []}={}){
         this.x = x;
         this.y = y;
         this.vx = vx;
@@ -9,6 +9,10 @@ export default class Sprite{
         this.h = h;
         this.color = color;
         this.cena = null;
+        this.pers = pers;
+        this.assets = assets;
+        this.cc = 0;
+        this.lc = 2;
 
         //Posicao no mapa, e nao no canvas todo como o x  e o y originais
         this.mx = 0;
@@ -22,8 +26,14 @@ export default class Sprite{
         })
     }
     desenhar(ctx){
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x - this.w/2, this.y - this.h/2,this.w, this.h);
+        if(this.pers === "pandora"){
+            ctx.drawImage(this.assets.img("pandora"), Math.floor(this.cc)*64, this.lc*64, 64, 64, this.x, this.y, 64, 64);
+        } else{
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x - this.w/2, this.y - this.h/2,this.w, this.h);
+        }
+       
+      
     }
     controlar(dt){
 
@@ -40,6 +50,15 @@ export default class Sprite{
     passo(dt){
         this.controlar(dt);
         this.mover(dt);
+        if(this.atirando == true){
+            this.lc = 2;
+            this.cc += 15 * dt;
+            if(this.cc >= 6){
+                this.cc = 0;
+                this.lc = 2;
+                this.atirando = false;
+            }
+        }
     }
 
     colidiuCom(outro){

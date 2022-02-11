@@ -24,6 +24,7 @@ input.configurarTeclado({
 });
 
 assets.carregaImagem("background", "assets/night-sky.jpg");
+assets.carregaImagem("pandora", "assets/pandora.png");
 assets.carregaAudio("explosion", "assets/explosion.wav");
 
 
