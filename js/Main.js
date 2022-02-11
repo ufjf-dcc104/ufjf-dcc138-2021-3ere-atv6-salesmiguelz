@@ -26,9 +26,10 @@ input.configurarTeclado({
 assets.carregaImagem("background", "assets/night-sky.jpg");
 assets.carregaImagem("pandora", "assets/pandora.png");
 assets.carregaImagem("energy", "assets/energy.png");
+assets.carregaImagem("skeleton", "assets/skeleton.png");
+
+
 assets.carregaAudio("explosion", "assets/explosion.wav");
-
-
 
 const canvas = document.querySelector("canvas");
 

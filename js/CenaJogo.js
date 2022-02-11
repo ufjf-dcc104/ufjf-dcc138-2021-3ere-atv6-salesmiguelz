@@ -112,7 +112,7 @@ export default class CenaJogo extends Cena{
 
         
         const pc = new Sprite({x: 50, vx: 10, pers: "pandora", assets:this.assets});
-        const proj = new Sprite({x: 1000, color: "blue", pers: "proj", assets: this.assets});
+        const proj = new Sprite({x: 1000, pers: "proj", assets: this.assets});
         pc.tags.add("pc");
         proj.tags.add("proj");
         pc.controlar = function(dt){

@@ -7,7 +7,6 @@ export default class Sprite{
         this.vy = vy;
         this.w = w;
         this.h = h;
-        this.color = "red";
         this.cena = null;
         this.pers = pers;
         this.assets = assets;
@@ -32,10 +31,11 @@ export default class Sprite{
         if(this.pers === "proj"){
             ctx.drawImage(this.assets.img("energy"), 125, 10, 64, 64, this.x - this.h/2, this.y - this.w/2, 30, 30);
         }
-        else{
-            ctx.fillStyle = this.color;
-            ctx.fillRect(this.x - this.w/2, this.y - this.h/2,this.w, this.h);
+
+        if(this.pers === "enemy"){
+            ctx.drawImage(this.assets.img("skeleton"), 0, 2*64, 64, 64, this.x - 24, this.y - 26, 45, 45);
         }
+       
     }
     controlar(dt){
 

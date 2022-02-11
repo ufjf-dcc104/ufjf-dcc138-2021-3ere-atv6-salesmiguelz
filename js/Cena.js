@@ -146,7 +146,9 @@ export default class Cena{
                 x: sc * 32 + 32/2,
                 y: sl * 32 + 32/2,
                 vx: vx,
-                color: "red"
+                pers: "enemy",
+                assets: this.assets,
+                
             });
 
             en1.tags.add("enemy");
