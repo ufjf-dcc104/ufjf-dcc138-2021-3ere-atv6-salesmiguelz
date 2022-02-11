@@ -78,6 +78,7 @@ export default class CenaJogo extends Cena{
     quandoColidir(a, b){
         if(!(a.tags.has("pc") && b.tags.has("proj"))){
             if(a.tags.has("proj") && b.tags.has("enemy")){
+                this.assets.play("explosion");
                 this.sanidade++;
                 if(this.sanidade == 5){
                     this.sanidade = 0;
