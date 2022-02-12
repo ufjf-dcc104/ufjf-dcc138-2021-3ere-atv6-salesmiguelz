@@ -36,9 +36,9 @@ export default class CenaJogoMedio extends Cena{
 
         this.spawn += dt;
 
-        if(this.spawn >= 0.8){
+        if(this.spawn >= 1.0){
             this.spawn = 0;
-            this.criaInimigo({vx: -250});
+            this.criaInimigo({vx: -300});
         }
     }
 
@@ -84,7 +84,7 @@ export default class CenaJogoMedio extends Cena{
             if(a.tags.has("proj") && b.tags.has("enemy")){
                 this.assets.play("explosion");
                 this.sanidade++;
-                if(this.sanidade == 5){
+                if(this.sanidade == 10){
                     this.sanidade = 0;
                     this.assets.play("win");
                     this.game.selecionaCena("win");

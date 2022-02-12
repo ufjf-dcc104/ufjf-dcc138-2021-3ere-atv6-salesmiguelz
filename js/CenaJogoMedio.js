@@ -35,7 +35,7 @@ export default class CenaJogoMedio extends Cena{
 
         this.spawn += dt;
 
-        if(this.spawn >= 1){
+        if(this.spawn >= 1.5){
             this.spawn = 0;
             this.criaInimigo({vx: -250});
         }
@@ -83,7 +83,7 @@ export default class CenaJogoMedio extends Cena{
             if(a.tags.has("proj") && b.tags.has("enemy")){
                 this.assets.play("explosion");
                 this.sanidade++;
-                if(this.sanidade == 5){
+                if(this.sanidade == 10){
                     this.sanidade = 0;
                     this.assets.play("level");
                     this.game.selecionaCena("jogoDificil");
@@ -121,17 +121,17 @@ export default class CenaJogoMedio extends Cena{
         proj.tags.add("proj");
         pc.controlar = function(dt){
             if(cena.input.comandos.get("MOVE_ESQUERDA")){
-                this.vx = -150;
+                this.vx = -125;
             } else if(cena.input.comandos.get("MOVE_DIREITA")){
-                this.vx = +150;
+                this.vx = +125;
             } else{
                 this.vx = 0;
             }
 
             if(cena.input.comandos.get("MOVE_CIMA")){
-                this.vy = -150;
+                this.vy = -125;
             } else if(cena.input.comandos.get("MOVE_BAIXO")){
-                this.vy = +150;
+                this.vy = +125;
             } else{
                 this.vy = 0;
             }
