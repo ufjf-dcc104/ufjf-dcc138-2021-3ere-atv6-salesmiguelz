@@ -1,10 +1,10 @@
 export default class Mapa{
-    constructor(linhas = 8, colunas = 12, tamanho = 32){
+    constructor(linhas = 8, colunas = 12, tamanho = 32, assets){
         this.LINHAS = linhas;
         this.COLUNAS = colunas;
         this.SIZE = tamanho;
         this.tiles = [];
-
+        this.assets = assets;
         for(let l = 0; l < this.LINHAS; l++){
             //Criando um vetor em cada linha, que sera o vetor de colunas
             this.tiles[l] = [];
@@ -20,13 +20,12 @@ export default class Mapa{
             for(let c = 0; c < this.COLUNAS; c++){
                 switch(this.tiles[l][c]){
                     case 1:
-                        ctx.fillStyle = "grey";
+                        ctx.drawImage(this.assets.img("portal"), c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
                         break;
                     default:
                         ctx.fillStyle = "transparent";
                 }
 
-                ctx.fillRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
                 // ctx.strokeRect(c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
             }
         }
