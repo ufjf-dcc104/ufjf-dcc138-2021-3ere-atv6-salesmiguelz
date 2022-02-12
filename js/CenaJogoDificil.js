@@ -86,6 +86,7 @@ export default class CenaJogoMedio extends Cena{
                 this.sanidade++;
                 if(this.sanidade == 5){
                     this.sanidade = 0;
+                    this.assets.play("win");
                     this.game.selecionaCena("win");
                     return;
                 }
@@ -143,6 +144,7 @@ export default class CenaJogoMedio extends Cena{
                 proj.y = pc.y;
                 proj.vx = +200;
                 pc.atirando = true;
+                this.assets.play("shoot");
             }
         }
 

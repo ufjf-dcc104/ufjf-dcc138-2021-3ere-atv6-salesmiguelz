@@ -31,6 +31,11 @@ assets.carregaImagem("portal", "assets/portal.png");
 
 
 assets.carregaAudio("explosion", "assets/explosion.wav");
+assets.carregaAudio("lose", "assets/lose.wav");
+assets.carregaAudio("portal", "assets/enter-portal.wav");
+assets.carregaAudio("shoot", "assets/shoot.wav");
+assets.carregaAudio("level", "assets/level.wav");
+assets.carregaAudio("win", "assets/win.wav");
 
 const canvas = document.querySelector("canvas");
 

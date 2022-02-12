@@ -2,6 +2,10 @@ import Cena from "./Cena.js";
 
 export default class CenaFim extends Cena{
     desenhar(){
+        if(this.cont == 0){
+            this.assets.play("lose");
+            this.cont++;
+        }
         this.ctx.fillStyle = "black";
         this.ctx.fillRect(0,0,this.canvas.width, this.canvas.height);
 

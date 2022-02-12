@@ -136,6 +136,7 @@ export default class Cena{
         this.cc = 0;
         this.lc = 0;
         this.atirando = false;
+        this.cont = 0;
     }
 
     criaInimigo({vx = -150} = {}){
@@ -167,6 +168,7 @@ export default class Cena{
             if(sprite.tags.has("enemy") && sprite.x == 43 ){
                 this.aRemover.push(sprite);
                 this.vida -= 1;
+                this.assets.play("portal");
                 if(this.vida == 0){
                     this.game.selecionaCena("fim");
                     return;
