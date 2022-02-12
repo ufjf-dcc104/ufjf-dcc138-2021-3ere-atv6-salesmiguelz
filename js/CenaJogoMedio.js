@@ -32,9 +32,9 @@ export default class CenaJogoMedio extends Cena{
 
         this.spawn += dt;
 
-        if(this.spawn >= 1.5){
+        if(this.spawn >= 1){
             this.spawn = 0;
-            this.criaInimigo({vx: -300});
+            this.criaInimigo({vx: -250});
         }
     }
 
@@ -78,6 +78,7 @@ export default class CenaJogoMedio extends Cena{
     quandoColidir(a, b){
         if(!(a.tags.has("pc") && b.tags.has("proj"))){
             if(a.tags.has("proj") && b.tags.has("enemy")){
+                this.assets.play("explosion");
                 this.sanidade++;
                 if(this.sanidade == 5){
                     this.sanidade = 0;
@@ -104,29 +105,29 @@ export default class CenaJogoMedio extends Cena{
 
     preparar(){
         super.preparar();
-        const mapa1 = new Mapa(10, 14, 32);
+        const mapa1 = new Mapa(10, 14, 32, this.assets);
         mapa1.carregaMapa(modeloMapa1);
         this.configuraMapa(mapa1);
         const cena = this;
 
         
-        const pc = new Sprite({x: 50, vx: 10});
-        const proj = new Sprite({x: 1000, color: "blue"});
+        const pc = new Sprite({x: 50, vx: 10, pers: "pandora", assets:this.assets});
+        const proj = new Sprite({x: 1000, pers: "proj", assets: this.assets});
         pc.tags.add("pc");
         proj.tags.add("proj");
         pc.controlar = function(dt){
             if(cena.input.comandos.get("MOVE_ESQUERDA")){
-                this.vx = -200;
+                this.vx = -150;
             } else if(cena.input.comandos.get("MOVE_DIREITA")){
-                this.vx = +200;
+                this.vx = +150;
             } else{
                 this.vx = 0;
             }
 
             if(cena.input.comandos.get("MOVE_CIMA")){
-                this.vy = -200;
+                this.vy = -150;
             } else if(cena.input.comandos.get("MOVE_BAIXO")){
-                this.vy = +200;
+                this.vy = +150;
             } else{
                 this.vy = 0;
             }
@@ -136,7 +137,8 @@ export default class CenaJogoMedio extends Cena{
             if(cena.input.comandos.get("ATIRAR")){
                 proj.x = pc.x;
                 proj.y = pc.y;
-                proj.vx = +300;
+                proj.vx = +200;
+                pc.atirando = true;
             }
         }
 
