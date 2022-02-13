@@ -14,6 +14,10 @@ export default class CenaCarregando extends Cena{
         if(this.assets.acabou()){
             this.ctx.fillStyle = "yellow"
             this.ctx.fillText("Aperte espaço para continuar!", this.canvas.width/2, this.canvas.height/2 + 40);
+
+            this.ctx.font = "18px Impact";
+            this.ctx.fillStyle = "yellow";
+            this.ctx.fillText("Cuidado com o volume, regule pelo seu dispositivo de som!", this.canvas.width/2, this.canvas.height/2 + 80);
         } else{
             this.ctx.font = "20px Impact";
             this.ctx.fillStyle = "yellow";
