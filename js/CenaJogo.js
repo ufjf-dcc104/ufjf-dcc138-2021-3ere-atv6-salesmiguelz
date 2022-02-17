@@ -4,7 +4,6 @@ import Sprite from "./Sprite.js";
 import modeloMapa1 from "../maps/mapa1.js";
 export default class CenaJogo extends Cena{
     desenhar(){
-        this.ctx.drawImage(this.assets.img("background"), 0, 0, this.canvas.width, this.canvas.height);
         this.ctx.font = "25px Impact";
         this.ctx.fillStyle = "red"
         this.ctx.fillText(`Vida: ${this.vida}`, 90, 30);

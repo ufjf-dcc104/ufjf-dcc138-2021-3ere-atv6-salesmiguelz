@@ -22,6 +22,9 @@ export default class Mapa{
                     case 1:
                         ctx.drawImage(this.assets.img("brick"), c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
                         break;
+                    case 2:
+                        ctx.drawImage(this.assets.img("ground"), c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
+                        break;
                     default:
                         ctx.fillStyle = "transparent";
                 }
