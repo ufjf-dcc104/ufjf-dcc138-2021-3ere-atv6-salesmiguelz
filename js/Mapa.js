@@ -20,7 +20,7 @@ export default class Mapa{
             for(let c = 0; c < this.COLUNAS; c++){
                 switch(this.tiles[l][c]){
                     case 1:
-                        ctx.drawImage(this.assets.img("portal"), c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
+                        ctx.drawImage(this.assets.img("brick"), c * this.SIZE, l * this.SIZE, this.SIZE, this.SIZE);
                         break;
                     default:
                         ctx.fillStyle = "transparent";
