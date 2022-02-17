@@ -139,22 +139,24 @@ export default class Cena{
         this.cont = 0;
     }
 
-    criaInimigo({vx = -150} = {}){
-            let sl = Math.floor(Math.random() * (10 - 1 - 1) + 1);
-            let sc = 13;
-    
-            const en1 = new Sprite({
+    criaJoia(){
+            let sl = 0;
+            let sc = 0;
+
+            while(this.mapa.tiles[sl][sc] != 0){
+                sl = Math.floor(Math.random() * (10 - 1 - 1) + 1);
+                sc = Math.floor(Math.random() * (14 - 1 - 1) + 1);
+            }
+            
+            const joia = new Sprite({
                 x: sc * 32 + 32/2,
                 y: sl * 32 + 32/2,
-                vx: vx,
-                pers: "enemy",
+                pers: "joia",
                 assets: this.assets,
                 
-            });
-
-            en1.tags.add("enemy");
+            }); 
     
-            this.adicionar(en1);
+            this.adicionar(joia);
             this.contaInimigos++;
        
     }

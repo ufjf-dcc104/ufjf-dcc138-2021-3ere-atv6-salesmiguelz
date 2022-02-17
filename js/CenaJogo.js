@@ -36,7 +36,7 @@ export default class CenaJogo extends Cena{
 
         if(this.spawn >= 2){
             this.spawn = 0;
-            this.criaInimigo({vx: -175});
+            this.criaJoia();
         }
     }
 
