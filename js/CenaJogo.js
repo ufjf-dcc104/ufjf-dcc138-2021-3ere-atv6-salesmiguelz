@@ -77,15 +77,6 @@ export default class CenaJogo extends Cena{
         }
 
     quandoColidir(a, b){
-       
-        if(!this.aRemover.includes(a)){
-            this.aRemover.push(a);
-        } 
-
-        if(!this.aRemover.includes(b)){
-            this.aRemover.push(b);
-        }
-
         if(a.tags.has("pc") && b.tags.has("joia") ){
             this.aRemover.push(b);
             this.assets.play("explosion");
@@ -95,6 +86,7 @@ export default class CenaJogo extends Cena{
                 this.game.selecionaCena("fim")
             }
         }
+        
     }
 
     preparar(){

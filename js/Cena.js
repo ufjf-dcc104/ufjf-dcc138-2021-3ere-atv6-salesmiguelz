@@ -154,6 +154,8 @@ export default class Cena{
                 assets: this.assets,
                 
             }); 
+
+            joia.tags.add("joia");
     
             this.adicionar(joia);
     }
