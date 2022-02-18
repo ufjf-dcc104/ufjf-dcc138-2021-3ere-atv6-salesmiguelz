@@ -34,8 +34,14 @@ export default class CenaJogo extends Cena{
 
         this.spawn += dt;
 
-        if(this.spawn >= 2){
+        if(this.spawn >= 5){
             this.spawn = 0;
+
+            for(let i = 0; i < this.sprites.length; i++){
+                if(this.sprites[i].tags.has("joia")){
+                    this.aRemover.push(this.sprites[i]);
+                }
+            }
             this.criaJoia();
         }
     }
