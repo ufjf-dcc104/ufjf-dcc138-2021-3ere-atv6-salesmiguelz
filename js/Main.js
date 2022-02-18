@@ -25,6 +25,7 @@ input.configurarTeclado({
 
 assets.carregaImagem("pandora", "assets/pandora.png");
 assets.carregaImagem("energy", "assets/energy.png");
+assets.carregaImagem("background", "assets/background.png");
 
 
 assets.carregaImagem("brick", "assets/brick.png");

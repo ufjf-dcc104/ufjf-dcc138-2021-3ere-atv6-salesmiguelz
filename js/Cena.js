@@ -131,8 +131,7 @@ export default class Cena{
         this.mapa = null;
         this.rodando = true;
         this.spawn = 0;
-        this.vida = 5;
-        this.sanidade = 0;
+        this.contJoia = 0;
         this.cc = 0;
         this.lc = 0;
         this.atirando = false;
@@ -145,11 +144,11 @@ export default class Cena{
 
             while(this.mapa.tiles[sl][sc] != 0){
                 sl = Math.floor(Math.random() * (10 - 1 - 1) + 1);
-                sc = Math.floor(Math.random() * (14 - 1 - 1) + 1);
+                sc = Math.floor(Math.random() * (12 - 1 - 1) + 1);
             }
             
             const joia = new Sprite({
-                x: sc * 32 + 32/2,
+                x: sc * 32 + 32/2 ,
                 y: sl * 32 + 32/2,
                 pers: "joia",
                 assets: this.assets,
@@ -157,25 +156,6 @@ export default class Cena{
             }); 
     
             this.adicionar(joia);
-            this.contaInimigos++;
-       
     }
 
-    verificaInimigo(){
-        //Remove sprite caso ele bata na "parede do outro lado do canvas"
-        for(const sprite of this.sprites){
-            if(sprite.tags.has("proj") && sprite.x == 437){
-                sprite.x = -1000;
-            }
-            if(sprite.tags.has("enemy") && sprite.x == 43 ){
-                this.aRemover.push(sprite);
-                this.vida -= 1;
-                this.assets.play("portal");
-                if(this.vida == 0){
-                    this.game.selecionaCena("fim");
-                    return;
-                }
-            }
-        }
-    }
 }

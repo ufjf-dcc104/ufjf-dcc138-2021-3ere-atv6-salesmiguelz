@@ -4,10 +4,10 @@ import Sprite from "./Sprite.js";
 import modeloMapa1 from "../maps/mapa1.js";
 export default class CenaJogo extends Cena{
     desenhar(){
+        this.ctx.drawImage(this.assets.img("background"), 0, 0, this.canvas.width, this.canvas.height);
         this.ctx.font = "25px Impact";
         this.ctx.fillStyle = "red"
-        this.ctx.fillText(`Vida: ${this.vida}`, 90, 30);
-        this.ctx.fillText(`Sanidade: ${this.sanidade}`, 200, 30);
+        this.ctx.fillText(`Joias: ${this.contJoia}/5`, 70, 30);
 
         this.ctx.font = "20px Impact";
         this.ctx.fillStyle = "red"
@@ -50,7 +50,6 @@ export default class CenaJogo extends Cena{
         //Desenha o "fundo" (canvas) e os sprites na tela, ja com seus estados (posicoes) modificados pelo passo
         this.desenhar();
         this.checaColisao();
-        this.verificaInimigo();
         this.removerSprites();
 
 
@@ -78,30 +77,22 @@ export default class CenaJogo extends Cena{
         }
 
     quandoColidir(a, b){
-        if(!(a.tags.has("pc") && b.tags.has("proj"))){
-            if(a.tags.has("proj") && b.tags.has("enemy")){
-                this.assets.play("explosion");
-                this.sanidade++;
-                if(this.sanidade == 10){
-                    this.sanidade = 0;
-                    this.assets.play("level");
-                    this.game.selecionaCena("jogoMedio");
-                    return;
-                }
-                this.aRemover.push(b);
-                return;
-            }
-            if(!this.aRemover.includes(a)){
-                this.aRemover.push(a);
-            } 
-    
-            if(!this.aRemover.includes(b)){
-                this.aRemover.push(b);
-            }
-            
-    
-            if(a.tags.has("pc") && b.tags.has("enemy") ){
-                this.game.selecionaCena("fim");
+       
+        if(!this.aRemover.includes(a)){
+            this.aRemover.push(a);
+        } 
+
+        if(!this.aRemover.includes(b)){
+            this.aRemover.push(b);
+        }
+
+        if(a.tags.has("pc") && b.tags.has("joia") ){
+            this.aRemover.push(b);
+            this.assets.play("explosion");
+            this.contJoia+= 1;
+
+            if(this.contJoia == 5){
+                this.game.selecionaCena("fim")
             }
         }
     }
@@ -114,10 +105,8 @@ export default class CenaJogo extends Cena{
         const cena = this;
 
         
-        const pc = new Sprite({x: 50, vx: 10, pers: "pandora", assets:this.assets});
-        const proj = new Sprite({x: 1000, pers: "proj", assets: this.assets});
+        const pc = new Sprite({x: 50, vx: 10, pers: "luke", assets:this.assets});
         pc.tags.add("pc");
-        proj.tags.add("proj");
         pc.controlar = function(dt){
             if(cena.input.comandos.get("MOVE_ESQUERDA")){
                 this.vx = -90;
@@ -136,23 +125,6 @@ export default class CenaJogo extends Cena{
             }
         }
 
-        proj.controlar = function(){
-            if(cena.input.comandos.get("ATIRAR")){
-                proj.x = pc.x;
-                proj.y = pc.y;
-                proj.vx = +200;
-                pc.atirando = true;
-                this.assets.play("shoot");
-            }
-        }
-
         this.adicionar(pc);
-        this.adicionar(proj);
-
-            function perseguePc(dt){
-                this.vx = 25 * Math.sign(pc.x - this.x);
-                this.vy = 25 * Math.sign(pc.y - this.y);
-            }
-            
     }
 }

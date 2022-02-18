@@ -25,7 +25,7 @@ export default class Sprite{
         })
     }
     desenhar(ctx){
-        if(this.pers === "pandora"){
+        if(this.pers === "luke"){
             ctx.drawImage(this.assets.img("pandora"), Math.floor(this.cc)*64, this.lc*64, 64, 64, this.x - 25, this.y - 25, 45, 45);
         }
         if(this.pers === "proj"){
@@ -33,7 +33,7 @@ export default class Sprite{
         }
 
         if(this.pers === "joia"){
-            ctx.drawImage(this.assets.img("joia"), 0, 0, 820, 580, this.x + 20, this.y + 20, 25, 25);
+            ctx.drawImage(this.assets.img("joia"), 0, 0, 820, 580, this.x, this.y, 25, 25);
 
         }
        
