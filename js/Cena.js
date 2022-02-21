@@ -134,8 +134,8 @@ export default class Cena{
         this.contJoia = 0;
         this.cc = 0;
         this.lc = 0;
-        this.atirando = false;
         this.cont = 0;
+        this.tempo = 10;
 
         this.moveCima = false;
         this.moveBaixo = false;
