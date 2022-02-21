@@ -100,7 +100,7 @@ export default class CenaJogo extends Cena{
     quandoColidir(a, b){
         if(a.tags.has("pc") && b.tags.has("joia") ){
             this.aRemover.push(b);
-            this.assets.play("explosion");
+            this.assets.play("joia");
             this.contJoia+= 1;
 
             if(this.contJoia == 5){
