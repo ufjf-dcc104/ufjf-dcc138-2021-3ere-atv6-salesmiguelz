@@ -26,15 +26,11 @@ export default class Sprite{
     }
     desenhar(ctx){
         if(this.pers === "luke"){
-            ctx.drawImage(this.assets.img("luke"), Math.floor(this.cc)*64, this.lc*64, 64, 64, this.x - 25, this.y - 25, 45, 45);
+            
+            ctx.drawImage(this.assets.img("luke"), Math.floor(this.cc)*64, this.lc*64, 64, 64, this.x - 22, this.y - 25, 45, 45);
         }
-        if(this.pers === "proj"){
-            ctx.drawImage(this.assets.img("energy"), 125, 10, 64, 64, this.x - this.h/2, this.y - this.w/2, 30, 30);
-        }
-
         if(this.pers === "joia"){
-            ctx.drawImage(this.assets.img("joia"), 0, 0, 820, 580, this.x, this.y, 25, 25);
-
+            ctx.drawImage(this.assets.img("joia"), 0, 0, 820, 580, this.x - 13, this.y - 12, 25, 25);
         }
        
     }

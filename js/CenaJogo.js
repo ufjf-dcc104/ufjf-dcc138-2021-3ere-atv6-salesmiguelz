@@ -118,7 +118,7 @@ export default class CenaJogo extends Cena{
         const cena = this;
 
         
-        const pc = new Sprite({x: 50, vx: 10, pers: "luke", assets:this.assets});
+        const pc = new Sprite({x: 50, w:20, h:30, vx: 20, pers: "luke", assets:this.assets});
         pc.tags.add("pc");
         pc.controlar = function(dt){
             if(cena.input.comandos.get("MOVE_ESQUERDA")){
