@@ -135,7 +135,7 @@ export default class Cena{
         this.cc = 0;
         this.lc = 0;
         this.cont = 0;
-        this.tempo = 10;
+        this.tempo = 60;
 
         this.moveCima = false;
         this.moveBaixo = false;

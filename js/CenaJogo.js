@@ -11,7 +11,12 @@ export default class CenaJogo extends Cena{
 
         this.ctx.font = "25px Impact";
         this.ctx.fillStyle = "red"
-        this.ctx.fillText(`Tempo: 00:${Math.floor(this.tempo)}`, 230, 30);
+
+        if(this.tempo > 10){
+            this.ctx.fillText(`Tempo: 00:${Math.floor(this.tempo)}`, 230, 30);
+        } else{
+            this.ctx.fillText(`Tempo: 00:0${Math.floor(this.tempo)}`, 230, 30);
+        }
 
         this.ctx.font = "20px Impact";
         this.ctx.fillStyle = "red"
