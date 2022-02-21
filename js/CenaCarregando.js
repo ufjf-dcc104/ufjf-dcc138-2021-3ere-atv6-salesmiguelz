@@ -8,7 +8,7 @@ export default class CenaCarregando extends Cena{
         this.ctx.font = "25px Impact";
         this.ctx.fillStyle = "red"
         this.ctx.textAlign = "center";
-        this.ctx.fillText("Pandora's Nightmare", this.canvas.width/2, this.canvas.height/3);
+        this.ctx.fillText("The Journey of Luke", this.canvas.width/2, this.canvas.height/3);
 
         
         if(this.assets.acabou()){
