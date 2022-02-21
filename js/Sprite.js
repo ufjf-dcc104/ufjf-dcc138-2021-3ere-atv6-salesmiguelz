@@ -53,15 +53,43 @@ export default class Sprite{
     passo(dt){
         this.controlar(dt);
         this.mover(dt);
-        if(this.atirando == true){
-            this.lc = 2;
+        if(this.moveCima){
+            this.lc = 8;
             this.cc += 15 * dt;
-            if(this.cc >= 6){
+            if(this.cc >= 8){
                 this.cc = 0;
-                this.lc = 2;
-                this.atirando = false;
+                this.lc = 8;
             }
         }
+
+        if(this.moveBaixo){
+            this.lc = 10;
+            this.cc += 15 * dt;
+            if(this.cc >= 8){
+                this.cc = 0;
+                this.lc = 10;
+            }
+        }
+
+        if(this.moveEsquerda){
+            this.lc = 9;
+            this.cc += 15 * dt;
+            if(this.cc >= 8){
+                this.cc = 0;
+                this.lc = 9;
+            }
+        }
+
+        if(this.moveDireita){
+            this.lc = 11;
+            this.cc += 15 * dt;
+            if(this.cc >= 8){
+                this.cc = 0;
+                this.lc = 11;
+            }
+        }
+
+
     }
 
     colidiuCom(outro){

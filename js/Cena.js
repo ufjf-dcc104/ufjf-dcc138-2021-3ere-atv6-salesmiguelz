@@ -136,6 +136,11 @@ export default class Cena{
         this.lc = 0;
         this.atirando = false;
         this.cont = 0;
+
+        this.moveCima = false;
+        this.moveBaixo = false;
+        this.moveEsquerda = false;
+        this.moveDireita = false;
     }
 
     criaJoia(){

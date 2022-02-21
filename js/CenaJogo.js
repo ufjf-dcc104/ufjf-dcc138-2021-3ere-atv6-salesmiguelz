@@ -107,18 +107,26 @@ export default class CenaJogo extends Cena{
         pc.tags.add("pc");
         pc.controlar = function(dt){
             if(cena.input.comandos.get("MOVE_ESQUERDA")){
+                this.moveEsquerda = true;
                 this.vx = -90;
             } else if(cena.input.comandos.get("MOVE_DIREITA")){
+                this.moveDireita = true;
                 this.vx = +90;
             } else{
+                this.moveEsquerda = false;
+                this.moveDireita = false;
                 this.vx = 0;
             }
 
             if(cena.input.comandos.get("MOVE_CIMA")){
+                this.moveCima = true;
                 this.vy = -90;
             } else if(cena.input.comandos.get("MOVE_BAIXO")){
+                this.moveBaixo = true;
                 this.vy = +90;
             } else{
+                this.moveCima = false;
+                this.moveBaixo = false;
                 this.vy = 0;
             }
         }
