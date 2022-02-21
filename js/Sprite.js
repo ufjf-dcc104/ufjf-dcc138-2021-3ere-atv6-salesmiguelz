@@ -60,6 +60,10 @@ export default class Sprite{
                 this.cc = 0;
                 this.lc = 8;
             }
+
+            this.moveBaixo = false;
+            this.moveEsquerda = false;
+            this.moveDireita = false;
         }
 
         if(this.moveBaixo){
@@ -69,6 +73,10 @@ export default class Sprite{
                 this.cc = 0;
                 this.lc = 10;
             }
+
+            this.moveCima = false;
+            this.moveEsquerda = false;
+            this.moveDireita = false;
         }
 
         if(this.moveEsquerda){
@@ -78,6 +86,10 @@ export default class Sprite{
                 this.cc = 0;
                 this.lc = 9;
             }
+
+            this.moveCima = false;
+            this.moveBaixo = false;
+            this.moveDireita = false;
         }
 
         if(this.moveDireita){
@@ -87,6 +99,10 @@ export default class Sprite{
                 this.cc = 0;
                 this.lc = 11;
             }
+
+            this.moveCima = false;
+            this.moveBaixo = false;
+            this.moveEsquerda = false;
         }
 
 
