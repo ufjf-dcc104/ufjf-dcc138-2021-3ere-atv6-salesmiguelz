@@ -23,7 +23,7 @@ input.configurarTeclado({
     " ": "PROXIMA_CENA"
 });
 
-assets.carregaImagem("pandora", "assets/pandora.png");
+assets.carregaImagem("luke", "assets/luke.png");
 assets.carregaImagem("energy", "assets/energy.png");
 assets.carregaImagem("background", "assets/background.png");
 
