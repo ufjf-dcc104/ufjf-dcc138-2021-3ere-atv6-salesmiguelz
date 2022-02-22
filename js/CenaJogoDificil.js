@@ -44,7 +44,7 @@ export default class CenaJogo extends Cena{
         this.spawn += dt;
         this.tempo -= dt;
 
-        if(this.spawn >= 5){
+        if(this.spawn >= 2.5){
             this.spawn = 0;
 
             for(let i = 0; i < this.sprites.length; i++){
@@ -99,6 +99,7 @@ export default class CenaJogo extends Cena{
 
     quandoColidir(a, b){
         if(a.tags.has("pc") && b.tags.has("joia") ){
+            this.spawn = 0;
             this.aRemover.push(b);
             this.assets.play("joia");
             this.contJoia+= 1;
@@ -107,6 +108,8 @@ export default class CenaJogo extends Cena{
                 this.assets.play("win");
                 this.game.selecionaCena("win")
             }
+
+            this.criaJoia();
         }
         
     }

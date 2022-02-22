@@ -99,6 +99,7 @@ export default class CenaJogo extends Cena{
 
     quandoColidir(a, b){
         if(a.tags.has("pc") && b.tags.has("joia") ){
+            this.spawn = 0;
             this.aRemover.push(b);
             this.assets.play("joia");
             this.contJoia+= 1;
@@ -107,6 +108,7 @@ export default class CenaJogo extends Cena{
                 this.assets.play("level");
                 this.game.selecionaCena("jogoMedio")
             }
+            this.criaJoia();
         }
         
     }
