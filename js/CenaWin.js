@@ -5,7 +5,7 @@ export default class CenaCarregando extends Cena{
         this.ctx.fillStyle = "black";
         this.ctx.fillRect(0,0,this.canvas.width, this.canvas.height);
 
-        this.ctx.font = "18px Impact";
+        this.ctx.font = "15px Impact";
         this.ctx.fillStyle = "red"
         this.ctx.textAlign = "center";
         this.ctx.fillText("Você coletou todas as jóias e conseguiu escapar das masmorras.", this.canvas.width/2, this.canvas.height/3);
