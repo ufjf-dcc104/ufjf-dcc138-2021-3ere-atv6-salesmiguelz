@@ -104,6 +104,7 @@ export default class CenaJogo extends Cena{
             this.contJoia+= 1;
 
             if(this.contJoia == 5){
+                this.assets.play("win");
                 this.game.selecionaCena("win")
             }
         }
