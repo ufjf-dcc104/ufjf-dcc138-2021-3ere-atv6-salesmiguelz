@@ -2,18 +2,25 @@ import Cena from "./Cena.js";
 import Mapa from "./Mapa.js";
 import Sprite from "./Sprite.js";
 import modeloMapa1 from "../maps/mapa1.js";
-export default class CenaJogoMedio extends Cena{
+export default class CenaJogo extends Cena{
     desenhar(){
         this.ctx.drawImage(this.assets.img("background"), 0, 0, this.canvas.width, this.canvas.height);
         this.ctx.font = "25px Impact";
         this.ctx.fillStyle = "red"
-        this.ctx.fillText(`Vida: ${this.vida}`, 90, 30);
-        this.ctx.fillText(`Sanidade: ${this.sanidade}`, 200, 30);
+        this.ctx.fillText(`Joias: ${this.contJoia}/5`, 70, 30);
 
-
-        this.ctx.font = "20px Impact";
+        this.ctx.font = "25px Impact";
         this.ctx.fillStyle = "red"
-        this.ctx.fillText(`Nível 3`, 80, 310);
+
+        if(this.tempo > 10){
+            this.ctx.fillText(`Tempo: 00:${Math.floor(this.tempo)}`, 230, 30);
+        } else{
+            this.ctx.fillText(`Tempo: 00:0${Math.floor(this.tempo)}`, 230, 30);
+        }
+
+        this.ctx.font = "25px Impact";
+        this.ctx.fillStyle = "red"
+        this.ctx.fillText(`Nível 3`, 390, 30);
 
         this.mapa?.desenhar(this.ctx);
 
@@ -35,10 +42,22 @@ export default class CenaJogoMedio extends Cena{
         }
 
         this.spawn += dt;
+        this.tempo -= dt;
 
-        if(this.spawn >= 1.0){
+        if(this.spawn >= 5){
             this.spawn = 0;
-            this.criaInimigo({vx: -300});
+
+            for(let i = 0; i < this.sprites.length; i++){
+                if(this.sprites[i].tags.has("joia")){
+                    this.aRemover.push(this.sprites[i]);
+                }
+            }
+            this.criaJoia();
+        }
+
+        if(this.tempo < 1)
+        {
+            this.game.selecionaCena("fim");
         }
     }
 
@@ -52,7 +71,6 @@ export default class CenaJogoMedio extends Cena{
         //Desenha o "fundo" (canvas) e os sprites na tela, ja com seus estados (posicoes) modificados pelo passo
         this.desenhar();
         this.checaColisao();
-        this.verificaInimigo();
         this.removerSprites();
 
 
@@ -80,32 +98,16 @@ export default class CenaJogoMedio extends Cena{
         }
 
     quandoColidir(a, b){
-        if(!(a.tags.has("pc") && b.tags.has("proj"))){
-            if(a.tags.has("proj") && b.tags.has("enemy")){
-                this.assets.play("explosion");
-                this.sanidade++;
-                if(this.sanidade == 10){
-                    this.sanidade = 0;
-                    this.assets.play("win");
-                    this.game.selecionaCena("win");
-                    return;
-                }
-                this.aRemover.push(b);
-                return;
-            }
-            if(!this.aRemover.includes(a)){
-                this.aRemover.push(a);
-            } 
-    
-            if(!this.aRemover.includes(b)){
-                this.aRemover.push(b);
-            }
-            
-    
-            if(a.tags.has("pc") && b.tags.has("enemy") ){
-                this.game.selecionaCena("fim");
+        if(a.tags.has("pc") && b.tags.has("joia") ){
+            this.aRemover.push(b);
+            this.assets.play("joia");
+            this.contJoia+= 1;
+
+            if(this.contJoia == 5){
+                this.game.selecionaCena("win")
             }
         }
+        
     }
 
     preparar(){
@@ -116,45 +118,34 @@ export default class CenaJogoMedio extends Cena{
         const cena = this;
 
         
-        const pc = new Sprite({x: 50, vx: 10, pers: "pandora", assets:this.assets});
-        const proj = new Sprite({x: 1000, pers: "proj", assets: this.assets});
+        const pc = new Sprite({x: 50, w:20, h:30, vx: 20, pers: "luke", assets:this.assets});
         pc.tags.add("pc");
-        proj.tags.add("proj");
         pc.controlar = function(dt){
             if(cena.input.comandos.get("MOVE_ESQUERDA")){
-                this.vx = -150;
+                this.moveEsquerda = true;
+                this.vx = -90;
             } else if(cena.input.comandos.get("MOVE_DIREITA")){
-                this.vx = +150;
+                this.moveDireita = true;
+                this.vx = +90;
             } else{
+                this.moveEsquerda = false;
+                this.moveDireita = false;
                 this.vx = 0;
             }
 
             if(cena.input.comandos.get("MOVE_CIMA")){
-                this.vy = -150;
+                this.moveCima = true;
+                this.vy = -90;
             } else if(cena.input.comandos.get("MOVE_BAIXO")){
-                this.vy = +150;
+                this.moveBaixo = true;
+                this.vy = +90;
             } else{
+                this.moveCima = false;
+                this.moveBaixo = false;
                 this.vy = 0;
             }
         }
 
-        proj.controlar = function(){
-            if(cena.input.comandos.get("ATIRAR")){
-                proj.x = pc.x;
-                proj.y = pc.y;
-                proj.vx = +200;
-                pc.atirando = true;
-                this.assets.play("shoot");
-            }
-        }
-
         this.adicionar(pc);
-        this.adicionar(proj);
-
-            function perseguePc(dt){
-                this.vx = 25 * Math.sign(pc.x - this.x);
-                this.vy = 25 * Math.sign(pc.y - this.y);
-            }
-            
     }
 }

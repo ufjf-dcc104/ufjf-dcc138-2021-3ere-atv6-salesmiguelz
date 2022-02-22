@@ -18,9 +18,9 @@ export default class CenaJogo extends Cena{
             this.ctx.fillText(`Tempo: 00:0${Math.floor(this.tempo)}`, 230, 30);
         }
 
-        this.ctx.font = "20px Impact";
+        this.ctx.font = "25px Impact";
         this.ctx.fillStyle = "red"
-        this.ctx.fillText(`Nível 1`, 80, 310);
+        this.ctx.fillText(`Nível 1`, 390, 30);
 
         this.mapa?.desenhar(this.ctx);
 
@@ -104,7 +104,7 @@ export default class CenaJogo extends Cena{
             this.contJoia+= 1;
 
             if(this.contJoia == 5){
-                this.game.selecionaCena("fim")
+                this.game.selecionaCena("jogoMedio")
             }
         }
         
